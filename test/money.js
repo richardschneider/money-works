@@ -70,6 +70,19 @@ describe('Money', () => {
             should.throws(() => a.minus(c));
         });
 
+        it('should multiply with an integer value', () => {
+            let a = new Money(0.30, 'NZD');
+
+            a.times(10).amount.should.eql(new Big(3.0));
+            a.times(10).currency.should.equal('NZD');
+            a.times(10.0).amount.should.eql(new Big(3.0));
+            a.times(10.0).currency.should.equal('NZD');
+
+            should.throws(() => a.times(10.1));
+            should.throws(() => a.times('10.1'));
+            should.throws(() => a.times(new Money(10, 'NZD')));
+        });
+
     });
 
 });
