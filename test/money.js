@@ -46,4 +46,30 @@ describe('Money', () => {
 
     });
 
+    describe('Math', () => {
+
+        it('should add when currencies are the same', () => {
+            let a = new Money(0.30, 'NZD'),
+                b = new Money(-0.20, 'NZD'),
+                c = new Money(-0.20, 'USD');
+
+            a.plus(b).amount.should.eql(new Big(0.1));
+            a.plus(b).currency.should.equal('NZD');
+
+            should.throws(() => a.plus(c));
+        });
+
+        it('should subtract when currencies are the same', () => {
+            let a = new Money(0.30, 'NZD'),
+                b = new Money(0.20, 'NZD'),
+                c = new Money(0.20, 'USD');
+
+            a.minus(b).amount.should.eql(new Big(0.1));
+            a.minus(b).currency.should.equal('NZD');
+
+            should.throws(() => a.minus(c));
+        });
+
+    });
+
 });
