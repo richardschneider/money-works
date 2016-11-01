@@ -21,7 +21,7 @@ describe('Money', () => {
     it('should print exact amount and currency code', () => {
         let money = new Money(10.6, 'YEN');
         money.toString().should.equal('10.6 YEN');
-    })
+    });
 
     describe('constructor', () => {
 
@@ -91,4 +91,40 @@ describe('Money', () => {
 
     });
 
+    describe('Logic', () => {
+        it('should compare when currency codes are the same', () => {
+            let a = new Money(30, 'NZD');
+            let b = new Money(40, 'NZD');
+            let c = new Money(50, 'USD');
+
+            a.compare(a).should.equal(0);
+            a.compare(b).should.equal(-1);
+            b.compare(a).should.equal(1);
+
+            a.eq(a).should.equal(true);
+            a.eq(b).should.equal(false);
+
+            a.ne(a).should.equal(false);
+            a.ne(b).should.equal(true);
+
+            a.lt(a).should.equal(false);
+            a.lt(b).should.equal(true);
+            b.lt(a).should.equal(false);
+
+            a.lte(a).should.equal(true);
+            a.lte(b).should.equal(true);
+            b.lte(a).should.equal(false);
+
+            a.gt(a).should.equal(false);
+            a.gt(b).should.equal(false);
+            b.gt(a).should.equal(true);
+
+            a.gte(a).should.equal(true);
+            a.gte(b).should.equal(false);
+            b.gte(a).should.equal(true);
+
+            should.throws(() => a.compare(c));
+        });
+
+    });
 });
