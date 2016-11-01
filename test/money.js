@@ -18,6 +18,11 @@ describe('Money', () => {
         money.should.have.property('currency', 'YEN');
     });
 
+    it('should print exact amount and currency code', () => {
+        let money = new Money(10.6, 'YEN');
+        money.toString().should.equal('10.6 YEN');
+    })
+
     describe('constructor', () => {
 
         it('should allow an integer amount', () => {
