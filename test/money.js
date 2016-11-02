@@ -149,6 +149,13 @@ describe('Money', () => {
             money.toLocaleString('en-NZ').should.equal('€1,234.70');
             money.toLocaleString('fr-FR').should.equal('1\u00a0234,70\u00a0€');
         });
+
+        it('should format non-latin digits', () => {
+            let money = new Money(1234.7, 'EUR');
+
+            money.toLocaleString('en-US').should.equal('€1,234.70');
+            money.toLocaleString('en-US-u-nu-thai').should.equal('€๑,๒๓๔.๗๐');
+        });
     });
 
 });
