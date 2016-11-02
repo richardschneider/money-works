@@ -170,6 +170,30 @@ describe('Money', () => {
             should.throws(() => a.compare(c));
         });
 
+        it('should test for zero', () => {
+            new Money(-1, 'NZD').isZero().should.equal(false);
+            new Money(0, 'NZD').isZero().should.equal(true);
+            new Money(1, 'NZD').isZero().should.equal(false);
+        });
+
+        it('should test for not zero', () => {
+            new Money(-1, 'NZD').isNotZero().should.equal(true);
+            new Money(0, 'NZD').isNotZero().should.equal(false);
+            new Money(1, 'NZD').isNotZero().should.equal(true);
+        });
+
+        it('should test for positive', () => {
+            new Money(-1, 'NZD').isPositive().should.equal(false);
+            new Money(0, 'NZD').isPositive().should.equal(false);
+            new Money(1, 'NZD').isPositive().should.equal(true);
+        });
+
+        it('should test for negative', () => {
+            new Money(-1, 'NZD').isNegative().should.equal(true);
+            new Money(0, 'NZD').isNegative().should.equal(false);
+            new Money(1, 'NZD').isNegative().should.equal(false);
+        });
+
     });
 
     describe('Localisation', () => {
