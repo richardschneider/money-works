@@ -44,10 +44,6 @@ describe('Money', () => {
             new Money(new Big(10.123456789), 'NZD').should.have.property('amount', new Big(10.123456789));
         });
 
-        it('should not allow a string amount', () => {
-            should.throws(() => new Money('10.12', 'NZD'));
-        });
-
         it('should allow ISO-4217 currency code', () => {
             let ok = new Money(0, 'NZD');
             ok.should.be.an.instanceof(Money);
@@ -216,6 +212,17 @@ describe('Money', () => {
             new Money(-1, 'NZD').isNegative().should.equal(true);
             new Money(0, 'NZD').isNegative().should.equal(false);
             new Money(1, 'NZD').isNegative().should.equal(false);
+        });
+
+    });
+
+    describe('Serialisation', () => {
+
+        it('should roundtrip JSON', () => {
+            let a = new Money(100, 'NZD'),
+                json = JSON.stringify(a),
+                b = new Money(JSON.parse(json));
+            a.should.eql(b);
         });
 
     });
