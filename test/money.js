@@ -104,6 +104,30 @@ describe('Money', () => {
             b.round().toString().should.equal('124 JPY');
         });
 
+        it('should use bankers rounding', () => {
+            new Money(3.0, 'JPY').round().toString().should.equal('3 JPY');
+            new Money(3.1, 'JPY').round().toString().should.equal('3 JPY');
+            new Money(3.2, 'JPY').round().toString().should.equal('3 JPY');
+            new Money(3.3, 'JPY').round().toString().should.equal('3 JPY');
+            new Money(3.4, 'JPY').round().toString().should.equal('3 JPY');
+            new Money(3.5, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(3.6, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(3.7, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(3.8, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(3.9, 'JPY').round().toString().should.equal('4 JPY');
+
+            new Money(4.0, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.1, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.2, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.3, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.4, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.5, 'JPY').round().toString().should.equal('4 JPY');
+            new Money(4.6, 'JPY').round().toString().should.equal('5 JPY');
+            new Money(4.7, 'JPY').round().toString().should.equal('5 JPY');
+            new Money(4.8, 'JPY').round().toString().should.equal('5 JPY');
+            new Money(4.9, 'JPY').round().toString().should.equal('5 JPY');
+        });
+
         it('should allocate to a ratio', () => {
             let funds = new Money(10, 'JPY');
             let shares = funds.allocate([1, 1, 1]);
