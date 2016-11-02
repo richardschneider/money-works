@@ -19,8 +19,8 @@ describe('Money', () => {
     });
 
     it('should print exact amount and currency code', () => {
-        let money = new Money(10.6, 'JPY');
-        money.toString().should.equal('10.6 JPY');
+        let money = new Money(10.7, 'JPY');
+        money.toString().should.equal('10.7 JPY');
     });
 
     describe('constructor', () => {
@@ -135,4 +135,20 @@ describe('Money', () => {
         });
 
     });
+
+    describe('Localisation', () => {
+        it('should format to the default locale', () => {
+            let money = new Money(1234.7, 'JPY');
+            money.toLocaleString().should.equal('¥1,235');
+        });
+
+        it('should format to the specified locale', () => {
+            let money = new Money(1234.7, 'EUR');
+
+            money.toLocaleString('en-US').should.equal('€1,234.70');
+            money.toLocaleString('en-NZ').should.equal('€1,234.70');
+            money.toLocaleString('fr-FR').should.equal('1\u00a0234,70\u00a0€');
+        });
+    });
+
 });
