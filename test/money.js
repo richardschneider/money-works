@@ -18,6 +18,13 @@ describe('Money', () => {
         money.should.have.property('currency', 'JPY');
     });
 
+    it('should be immutable', () => {
+        let money = new Money(10, 'JPY');
+
+        should.throws(() => money.amount = 0);
+        should.throws(() => money.currency = 'NZD');
+    });
+
     it('should print exact amount and currency code', () => {
         let money = new Money(10.7, 'JPY');
         money.toString().should.equal('10.7 JPY');
