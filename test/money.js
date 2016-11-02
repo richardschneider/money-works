@@ -7,20 +7,20 @@ const should = require('should');
 describe('Money', () => {
 
     it('should have a Big amount', () => {
-        let money = new Money(10, 'YEN');
+        let money = new Money(10, 'JPY');
         money.should.have.property('amount');
         money.amount.should.be.instanceof(Big);
         money.amount.should.eql(new Big(10));
     });
 
     it('should have an ISO-4217 currency code', () => {
-        let money = new Money(10, 'YEN');
-        money.should.have.property('currency', 'YEN');
+        let money = new Money(10, 'JPY');
+        money.should.have.property('currency', 'JPY');
     });
 
     it('should print exact amount and currency code', () => {
-        let money = new Money(10.6, 'YEN');
-        money.toString().should.equal('10.6 YEN');
+        let money = new Money(10.6, 'JPY');
+        money.toString().should.equal('10.6 JPY');
     });
 
     describe('constructor', () => {
@@ -87,6 +87,14 @@ describe('Money', () => {
 
             should.throws(() => a.times('10.1'));
             should.throws(() => a.times(new Money(10, 'NZD')));
+        });
+
+        it('should round to the precision of the currency', () => {
+            let a = new Money(123.577, 'NZD');
+            let b = new Money(123.577, 'JPY');
+
+            a.round().toString().should.equal('123.58 NZD');
+            b.round().toString().should.equal('124 JPY');
         });
 
     });

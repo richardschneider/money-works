@@ -10,4 +10,5 @@ Work with money in multiple currencies
 ## Features
 
 - Avoids rounding errors by using a [big number](https://www.npmjs.com/package/big.js) package
+- Can round to the precision of the currency
 - Uses [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes
