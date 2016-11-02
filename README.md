@@ -11,6 +11,8 @@ Work with money in multiple currencies
 
 - Precision decimal arithmetic using a [big number](https://www.npmjs.com/package/big.js) package
 - Uses [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes
+- Uses [Martin Folwer's](http://martinfowler.com/) design pattern for [Money](http://martinfowler.com/eaaCatalog/money.html)
+- Allocation of funds without losing pennies (smallest denomination)
 - Rounding to the precision of the currency
 - Formats to the user's conventions using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl); including non-latin numbering systems
 - Uses [Andy Yearnshaw's Intl](https://github.com/andyearnshaw/Intl.js) when the environment's `Intl` package doesn't support the language.

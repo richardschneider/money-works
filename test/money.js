@@ -97,6 +97,35 @@ describe('Money', () => {
             b.round().toString().should.equal('124 JPY');
         });
 
+        it('should allocate to a ratio', () => {
+            let funds = new Money(10, 'JPY');
+            let shares = funds.allocate([1, 1, 1]);
+            shares.should.have.length(3);
+            shares[0].toString().should.equal('4 JPY');
+            shares[1].toString().should.equal('3 JPY');
+            shares[2].toString().should.equal('3 JPY');
+
+            shares = new Money(0.10, 'USD').allocate([70, 30]);
+            shares.should.have.length(2);
+            shares[0].toString().should.equal('0.07 USD');
+            shares[1].toString().should.equal('0.03 USD');
+
+            shares = new Money(0.01, 'USD').allocate([70, 20, 10]);
+            shares.should.have.length(3);
+            shares[0].toString().should.equal('0.01 USD');
+            shares[1].toString().should.equal('0 USD');
+            shares[2].toString().should.equal('0 USD');
+
+            shares = new Money(100, 'USD').allocate([1, 1, 1]);
+            shares.should.have.length(3);
+            shares[0].toString().should.equal('33.34 USD');
+            shares[1].toString().should.equal('33.33 USD');
+            shares[2].toString().should.equal('33.33 USD');
+
+            should.throws(() => funds.allocate());
+            should.throws(() => funds.allocate([]));
+        });
+
     });
 
     describe('Logic', () => {
