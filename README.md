@@ -60,3 +60,15 @@ Comparision functions are `eq`, `ne`, `lt`, `lte`, `gt`, `gte` and require Money
     if (total.isPositive()) {
         placeOrder();
     }
+
+### Forex
+
+Foreign exchange of currencies usually requires more precision than the currency default.  `round` can accept the number of decimal places.
+
+    new Money(123.57719, 'NZD').round(4);   // '123.5772 NZD'
+    
+The `allocate` method also has an optional precision
+
+    const fund = new Money(1000.6, 'JPY');
+    fund.allocate([1, 1])                   // '501 JPY' and '500 JPY'
+    fund.allocate([1, 1], 4)                // '501.3 JPY' and '500.3 JPY'

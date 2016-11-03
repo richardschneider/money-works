@@ -100,6 +100,13 @@ describe('Money', () => {
             b.round().toString().should.equal('124 JPY');
         });
 
+        it('should round to the specified number of decimal places', () => {
+            let a = new Money(123.57719, 'NZD');
+
+            a.round().toString().should.equal('123.58 NZD');
+            a.round(4).toString().should.equal('123.5772 NZD');
+        });
+
         it('should use bankers rounding', () => {
             new Money(3.0, 'JPY').round().toString().should.equal('3 JPY');
             new Money(3.1, 'JPY').round().toString().should.equal('3 JPY');
