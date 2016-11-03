@@ -14,7 +14,7 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 - [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes
 - Uses [Martin Folwer's](http://martinfowler.com/) design pattern for [Money](http://martinfowler.com/eaaCatalog/money.html)
 - Allocation of funds without loosing pennies (smallest denomination)
-- Rounding to the precision of the currency with [banker's rounding](https://en.wikipedia.org/wiki/Rounding)
+- [Banker's rounding](https://en.wikipedia.org/wiki/Rounding) to the precision of the currency 
 - Formats to the user's conventions using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl); including non-latin numbering systems
 - Uses [Andy Earnshaw's Intl](https://github.com/andyearnshaw/Intl.js) when the environment's `Intl` package doesn't support the language.
 
@@ -43,7 +43,7 @@ Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
     price.allocate([1, 1])          // '501 JPY' and '500 JPY'
     price.allocate([70, 20, 10])    // '701 JPY', '200 JPY' and '100 JPY'
 
-The standard Math functions (`plus`, `minus` and `times`) are available and are chainable.  `plus` and `minus` require Money of the same currency.  Its always a good idea to `round` the result of a calculation.
+The standard Math functions (`plus`, `minus` and `times`) are available and are chainable.  `plus` and `minus` require Money of the same currency.  Its always a good idea to `round` the result of a calculation, which uses banker's rounding to the precision of the currency.
 
     let gst = 0.15,
         total = price               // '1151 YPN' = 1000.6 + 150.09
