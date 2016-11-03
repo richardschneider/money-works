@@ -1,7 +1,6 @@
 {
   "name": "money-works",
   "description": "Work with money in multiple currencies",
-  "version": "0.0.42",
   "homepage": "https://github.com/richardschneider/money-works",
   "bugs": "https://github.com/richardschneider/money-works/issues",
   "license": "MIT",
