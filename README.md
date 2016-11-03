@@ -43,11 +43,11 @@ Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
     price.allocate([1, 1])          // '501 JPY' and '500 JPY'
     price.allocate([70, 20, 10])    // '701 JPY', '200 JPY' and '100 JPY'
 
-The standard Math functions (`plus`, `minus` and `times`) are available and are chainable.  
-`plus` and `minus` require Money of the same currency.  It always a good idea to `round` the result
-of a calculation.
+The standard Math functions (`plus`, `minus` and `times`) are available and are chainable.  `plus` and `minus` require Money of the same currency.  Its always a good idea to `round` the result of a calculation.
 
     let gst = 0.15,
         total = price               // '1151 YPN' = 1000.6 + 150.09
             .plus(price.times(gst))
             .round();
+
+Comparision functions are `eq`, `ne`, `lt`, `lte`, `gt`, `gte` and require Money of the same currency. Testing the amount against zero is done with `isZero`, `isNotZero`, `isPositive` and `isNegative`.
