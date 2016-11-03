@@ -51,3 +51,7 @@ The standard Math functions (`plus`, `minus` and `times`) are available and are 
             .round();
 
 Comparision functions are `eq`, `ne`, `lt`, `lte`, `gt`, `gte` and require Money of the same currency. Testing the amount against zero is done with `isZero`, `isNotZero`, `isPositive` and `isNegative`.
+
+    if (total.isPositive()) {
+        placeOrder();
+    }
