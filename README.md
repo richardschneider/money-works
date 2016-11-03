@@ -38,10 +38,14 @@ Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
     price.toLocaleString('en-NZ')   // '¥1,001'
     price.toLocaleString('fr-CA')   // '1 001 ¥'
 
-`allocate` distributes the Money based on the ratio without loosing any pennies.
+`allocate` distributes the Money based on the ratio without loosing any pennies.  It returns an Array of Money.
 
     price.allocate([1, 1])          // '501 JPY' and '500 JPY'
     price.allocate([70, 20, 10])    // '701 JPY', '200 JPY' and '100 JPY'
+    
+with ES6, `me` gets 70% and `other` only 30% of the price
+
+    let [me, other] = price.allocate([70, 30]);
 
 The standard Math functions (`plus`, `minus` and `times`) are available and are chainable.  `plus` and `minus` require Money of the same currency.  Its always a good idea to `round` the result of a calculation, which uses banker's rounding to the precision of the currency.
 
