@@ -18,6 +18,7 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 - Formats to the user's conventions using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl); including non-latin numbering systems
 - Uses [Andy Earnshaw's Intl](https://github.com/andyearnshaw/Intl.js) when the environment's `Intl` package doesn't support the language.
 - Maintains a cache of locales for performance
+- Supports the common cryptocurrencies XBT(BTC), ETH, XMR and XRP
 
 ## Getting started
 
