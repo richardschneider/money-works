@@ -72,3 +72,12 @@ The `allocate` method also has an optional precision
     const fund = new Money(1000.6, 'JPY');
     fund.allocate([1, 1])                   // '501 JPY' and '500 JPY'
     fund.allocate([1, 1], 4)                // '501.3 JPY' and '500.3 JPY'
+
+### Localisation
+
+`toLocaleString([locales], [options])` gets the local representation of the Money in the locale; see [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat) for the details. The `options.style` and `options.currency` are always set to 'currency' and Money.currency, respectively.
+
+    price.toLocaleString('fr-CA')       // '1 001 ¥'
+    let opt = { currencyDisplay: 'code' }
+    price.toLocaleString('fr-CA', opt)  // '1 001 YEN'
+

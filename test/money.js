@@ -254,6 +254,15 @@ describe('Money', () => {
             money.toLocaleString('en-US').should.equal('€1,234.70');
             money.toLocaleString('en-US-u-nu-thai').should.equal('€๑,๒๓๔.๗๐');
         });
+
+        it('should format to the specified locale with options', () => {
+            let money = new Money(1234.7, 'EUR'),
+                options = { currencyDisplay: 'code' };
+
+            money.toLocaleString('en-US').should.equal('€1,234.70');
+            money.toLocaleString('en-US', options).should.equal('EUR1,234.70');
+        });
+
     });
 
 });
