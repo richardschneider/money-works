@@ -11,5 +11,6 @@
     "unused": true,
     "boss": true,
     "eqnull": true,
-    "node": true
+    "node": true,
+    "-W014": true
 }

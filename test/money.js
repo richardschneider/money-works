@@ -274,6 +274,14 @@ describe('Money', () => {
             money.toLocaleString('en-US', options).should.equal('EUR1,234.70');
         });
 
+        it('should format with maximumFractionDigits', () => {
+            let money = new Money(1234.777, 'EUR'),
+                options = { maximumFractionDigits: 3 };
+
+            money.toLocaleString('en-US').should.equal('€1,234.78');
+            money.toLocaleString('en-US', options).should.equal('€1,234.777');
+        });
+
     });
 
 });
