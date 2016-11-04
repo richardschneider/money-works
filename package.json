@@ -5,7 +5,10 @@
   "bugs": "https://github.com/richardschneider/money-works/issues",
   "license": "MIT",
   "main": "index.js",
-  "browser": "browser.js",
+  "browser": {
+      "index.js": "browser.js",
+      "intl": false
+  },
   "browserify": {
     "transform": [
       [

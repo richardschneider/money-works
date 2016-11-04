@@ -12,4 +12,8 @@ describe('Localisation', () => {
         a.should.not.equal(c);
     });
 
+    it('should accept any language', () => {
+        let a = l10n('xx-XX', 'EUR');
+        a.should.have.property('format');
+    });
 });

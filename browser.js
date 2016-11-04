@@ -1,5 +1,5 @@
 'use strict';
 
-require('babel-polyfill');
+//require('babel-polyfill');
 
 module.exports = require('./lib/money');

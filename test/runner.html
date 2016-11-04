@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Testing money-works</title>
+  <style>
+    body {
+       font: 18px/1.5 "Helvetica Neue", Helvetica, sans-serif;
+       padding-left: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.2/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.2/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="../dist/money-works.spec.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</body>
+</html>
