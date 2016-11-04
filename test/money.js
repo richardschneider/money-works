@@ -105,6 +105,9 @@ describe('Money', () => {
 
             a.round().toString().should.equal('123.58 NZD');
             a.round(4).toString().should.equal('123.5772 NZD');
+
+            should.throws(() => a.round('up'));
+            should.throws(() => a.round(4.5));
         });
 
         it('should use bankers rounding', () => {
