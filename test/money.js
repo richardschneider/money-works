@@ -134,6 +134,14 @@ describe('Money', () => {
             new Money(4.9, 'JPY').round().toString().should.equal('5 JPY');
         });
 
+        it('should support cryptocurriencies', () => {
+            new Money(0.123456789, 'BTC').round().toString().should.equal('0.12345679 BTC');
+            new Money(0.123456789, 'XBT').round().toString().should.equal('0.12345679 XBT');
+            new Money(0.123456789, 'ETH').round().toString().should.equal('0.12 ETH');
+            new Money(0.123456789, 'XMR').round().toString().should.equal('0.12345679 XMR');
+            new Money(0.123456789, 'XRP').round().toString().should.equal('0.12345679 XRP');
+        });
+
         it('should allocate to a ratio', () => {
             let funds = new Money(10, 'JPY');
             let shares = funds.allocate([1, 1, 1]);
