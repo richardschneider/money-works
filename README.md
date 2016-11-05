@@ -22,6 +22,8 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 
 ## Getting started
 
+**money-works** is available for [Node.js](https://nodejs.org) and most modern browsers.  If you want to know if your currrent browser is compatible, run the [online test suite](https://richardschneider.github.io/money-works/test.html).
+
 Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 
     > npm install money-works --save

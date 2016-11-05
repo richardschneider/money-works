@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing money-works</title>
+  <style>
+    body {
+        font: 18px/1.5 "Helvetica Neue", Helvetica, sans-serif;
+        padding-left: 20px;
+    }
+    #mocha h2 {
+        font-size: 14px !important;
+    }
+    #mocha .test.pass::before {
+        font-size: 14px !important;
+        color: forestgreen !important;
+    }
+    #mocha .test.fail::before {
+        font-size: 14px !important;
+    }
+      #mocha .test pre {
+          white-space: pre-wrap;
+      }
+
+    @media screen and (max-device-width: 480px) {
+        body {
+            padding-left: 1px;
+        }
+        #mocha-stats {
+            position: absolute !important;
+        }
+    }
+
+}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.2/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.2/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="https://unpkg.com/money-works/dist/money-works.spec.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</body>
+</html>
