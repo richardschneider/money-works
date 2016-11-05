@@ -10,7 +10,6 @@ var coveralls = require('gulp-coveralls');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var glob = require('glob');
-var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var babel = require('babelify');
 
 var DEBUG = process.env.NODE_ENV === 'debug',
@@ -47,9 +46,13 @@ gulp.task('istanbul', function () {
     }));
 });
 
+/*
+ * PhantonJS doesn't support Intl, so there's not much point
+ * in using it to run tests.
+ */
 gulp.task('test-browser', ['dist-test'], function () {
-    return gulp.src('test/runner.html')
-        .pipe(mochaPhantomJS({reporter: 'min'}));
+//    return gulp.src('test/runner.html')
+//        .pipe(mochaPhantomJS({reporter: 'min'}));
 });
 
 gulp.task('site', function() {
