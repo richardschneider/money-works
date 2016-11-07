@@ -40,8 +40,8 @@
                     <label for="money">Money</label>
                     <div class="input-group" id="money">
                         <div class="input-group-btn">
-                                <button id="currency" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    EUR  <span class="caret"></span>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="currency">EUR</span> <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" id="selectCurrency">
                                     <li><a href="#">CNY</a></li>
@@ -93,7 +93,6 @@
     <script src="https://unpkg.com/money-works/dist/money-works.min.js"></script>
 
     <script>
-        var currency = 'EUR';
         var locales = [
             'jp', 'zh-Hans-CN', 'zh-Hans-CN-u-nu-hanidec', 'th-TH-u-nu-thai',
             'fr-FR', 'fr-CA', 'de-DE', 'en-US', 'en-GB'
@@ -103,6 +102,7 @@
             function show() {
                 var tbody = $('#format tbody'),
                     amount = $('#amount').val(),
+                    currency = $('#currency').text(),
                     money = new Money(amount, currency);
                 tbody.empty();
                 locales.forEach(function (locale) {
@@ -111,7 +111,7 @@
             }
 
             $('#selectCurrency').click(function (e) {
-                currency = e.target.innerText;
+                var currency = e.target.innerText;
                 $('#currency').text(currency);
                 e.preventDefault();
                 show();
