@@ -90,3 +90,14 @@ And `toLocaleString`
     let opt = { currencyDisplay: 'code' }
     price.toLocaleString('fr-CA', opt)  // '1 001 YEN'
 
+### Browser usage
+
+Include the package from your project
+
+    <script src="./node_modules/money-works/dist/money-works.min.js" type="text/javascript"></script>
+
+or from the [unpkg CDN](https://unpkg.com)
+
+    <script src="https://unpkg.com/money-works/dist/money-works.min.js"></script>
+
+The script creates the `Money` global constructor or defines it if you are using [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition).
