@@ -1,1 +1,133 @@
-Nothing to say yet!
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Money Works</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8">
+                <h1>Welcome</h1>
+                <p class="lead">
+                    <b>money-works</b> is about calculating and formatting money in multiple currencies and different locales.
+                    It is an open source project on <a href="https://github.com/richardschneider/money-works">Github</a>
+                    and published on <a href="https://www.npmjs.com/package/money-works">NPM</a>.
+                </p>
+                <p>
+                    Money contains an amount and a currency.  The amount is a big number that allows precision decimal arithmetic.
+                    The currency is an <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code. It uses banker's
+                    rounding to the decimal places of the currency.
+                    See the <a href="https://github.com/richardschneider/money-works/blob/master/README.md">README</a> for all the details.
+                </p>
+
+                <form>
+                    <label for="money">Money</label>
+                    <div class="input-group" id="money">
+                        <div class="input-group-btn">
+                                <button id="currency" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    EUR  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="selectCurrency">
+                                    <li><a href="#">CNY</a></li>
+                                    <li><a href="#">EUR</a></li>
+                                    <li><a href="#">USD</a></li>
+                                    <li><a href="#">JPY</a></li>
+                                    <li><a href="#">NZD</a></li>
+                                    <li><a href="#">XBT</a></li>
+                                </ul>
+                        </div>
+                        <input type="text" class="form-control" id="amount" value="1234.567" autocomplete="off">
+                    </div>
+
+                    <div id="error" class="alert alert-warning help-block hidden" role="alert">
+                        <strong>Failed!</strong> <span id="error-message"></span>
+                    </div>
+                </form>
+
+                <table class="table" id="format">
+                    <caption>The money displayed in different locales</caption>
+                    <thead>
+                        <tr>
+                            <th>Locale</th>
+                            <th>Format</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-3 col-sm-offset-1">
+                <h4>Tools</h4>
+                <ol class="list-unstyled">
+                    <li><a href="test.html">Unit tests</a></li>
+                </ol>
+
+                <h4>Resources</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://en.wikipedia.org/wiki/ISO_4217">Curency codes</a></li>
+                    <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation" rel="internal">Locale names</a></li>
+                    <li><a href="https://www.npmjs.com/package/big.js">Big numbers</a></li>
+                </ol>
+            </div>
+
+        </div> <!-- row --->
+    </div> <!-- container -->
+
+    <script src="https://unpkg.com/money-works/dist/money-works.min.js"></script>
+
+    <script>
+        var currency = 'EUR';
+        var locales = [
+            'jp', 'zh-Hans-CN', 'zh-Hans-CN-u-nu-hanidec', 'th-TH-u-nu-thai',
+            'fr-FR', 'fr-CA', 'de-DE', 'en-US', 'en-GB'
+        ];
+        $(document).ready(function() {
+
+            function show() {
+                var tbody = $('#format tbody'),
+                    amount = $('#amount').val(),
+                    money = new Money(amount, currency);
+                tbody.empty();
+                locales.forEach(function (locale) {
+                    tbody.append('<tr><td>' + locale + '</td> <td>' + money.toLocaleString(locale) + '</td></tr>');
+                });
+            }
+
+            $('#selectCurrency').click(function (e) {
+                currency = e.target.innerText;
+                $('#currency').text(currency);
+                e.preventDefault();
+                show();
+            });
+
+            $('#amount').keypress(function(e) {
+                if(e.which === 13) {
+                    e.preventDefault();
+                    show();
+                }
+            });
+
+
+            show();
+        });
+    </script>
+
+</body>
+</html>

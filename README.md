@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/richardschneider/money-works/badge.svg?branch=master)](https://coveralls.io/github/richardschneider/money-works?branch=master)
 [![npm version](https://badge.fury.io/js/money-works.svg)](https://badge.fury.io/js/money-works) 
 
-Work with money in multiple currencies and different locales.
+Work with money in multiple currencies and different locales.  See the [online demonstration](https://richardschneider.github.io/money-works/index.html).
 
 The [change log](https://github.com/richardschneider/money-works/releases) is automatically produced with
 the help of [semantic-release](https://github.com/semantic-release/semantic-release).
@@ -22,7 +22,7 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 
 ## Getting started
 
-**money-works** is available for [Node.js](https://nodejs.org) and most modern browsers.  If you want to know if your currrent browser is compatible, run the [online test suite](https://richardschneider.github.io/money-works/test.html).
+**money-works** is available for [Node.js](https://nodejs.org) and most modern browsers.  If you want to know if your currrent browser is compatible, run the [online test suite](https://richardschneider.github.io/money-works/test.html) or the [online demonstration](https://richardschneider.github.io/money-works/index.html).
 
 Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 
