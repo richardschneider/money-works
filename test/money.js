@@ -52,6 +52,12 @@ describe('Money', () => {
             should.throws(() => new Money(0, 'NZDX'));
         });
 
+        it('should allow toString() output', () => {
+            let a = new Money(10.7, 'JPY'),
+                b = new Money(a.toString());
+            b.should.eql(a);
+        });
+
     });
 
     describe('Math', () => {

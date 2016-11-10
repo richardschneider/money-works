@@ -10,13 +10,14 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 
 ## Features
 
+- [Banker's rounding](https://en.wikipedia.org/wiki/Rounding) to the precision of the currency 
+- Locale specific formatting using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl)
 - Precision decimal arithmetic using a [big number](https://www.npmjs.com/package/big.js) package
 - [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes
 - Uses [Martin Folwer's](http://martinfowler.com/) design pattern for [Money](http://martinfowler.com/eaaCatalog/money.html)
 - Allocation of funds without loosing pennies (smallest denomination)
-- [Banker's rounding](https://en.wikipedia.org/wiki/Rounding) to the precision of the currency 
-- Formats to the user's conventions using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl); including non-latin numbering systems
 - Uses [Andy Earnshaw's Intl](https://github.com/andyearnshaw/Intl.js) when the environment's `Intl` package doesn't support the language.
+- Non-latin numbering systems
 - Maintains a cache of locales for performance
 - Supports the common cryptocurrencies XBT(BTC), ETH, XMR and XRP
 
