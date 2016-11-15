@@ -58,6 +58,11 @@ describe('Money', () => {
             b.should.eql(a);
         });
 
+        it('should allow ISO-31-0 numbers', () => {
+            let a = new Money('12 456,78 EUR');
+            a.toString().should.equal('12456.78 EUR');
+        });
+
     });
 
     describe('Math', () => {
