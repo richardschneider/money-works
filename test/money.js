@@ -243,6 +243,24 @@ describe('Money', () => {
             new Money(1, 'NZD').isNegative().should.equal(false);
         });
 
+        it('should return false when currencies are different and testing equality', () => {
+            let a = new Money(30, 'NZD');
+            let b = new Money(30, 'NZD');
+            let c = new Money(30, 'USD');
+
+            a.eq(b).should.equal(true);
+            a.eq(c).should.equal(false);
+        });
+
+        it('should return true when currencies are different and testing inequality', () => {
+            let a = new Money(30, 'NZD');
+            let b = new Money(30, 'NZD');
+            let c = new Money(30, 'USD');
+
+            a.ne(b).should.equal(false);
+            a.ne(c).should.equal(true);
+        });
+
     });
 
     describe('Serialisation', () => {
