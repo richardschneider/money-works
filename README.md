@@ -89,7 +89,7 @@ And `toLocaleString`
 
     price.toLocaleString('fr-CA')       // '1 001 ¥'
     let opt = { currencyDisplay: 'code' }
-    price.toLocaleString('fr-CA', opt)  // '1 001 YEN'
+    price.toLocaleString('fr-CA', opt)  // '1 001 JPY'
 
 ### Browser usage
 
