@@ -91,6 +91,10 @@ And `toLocaleString`
     let opt = { currencyDisplay: 'code' }
     price.toLocaleString('fr-CA', opt)  // '1 001 JPY'
 
+A default locale and localeOptions is set with `Money.defaultLocale` and `Money.defaultLocaleOptions`.  Both defaults are a function that return the default locale (string or array) and default locale options (object), respectively.
+
+    Money.defaultLocale = () => window.lang;
+    
 ### Browser usage
 
 Include the package from your project

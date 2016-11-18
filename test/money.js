@@ -275,7 +275,7 @@ describe('Money', () => {
     });
 
     describe('Localisation', () => {
-        it('should format to the default locale', () => {
+        it('should format to a undefined locale', () => {
             let money = new Money(1234.7, 'JPY');
             money.toLocaleString().should.match(/¥/);
             money.toLocaleString().should.match(/35/);
@@ -312,6 +312,22 @@ describe('Money', () => {
             money.toLocaleString('en-US', options).should.equal('€1,234.777');
         });
 
+        it('should use a default locale and options', () => {
+            let originalLocale = Money.defaultLocale,
+                originalLocaleOptions = Money.defaultLocaleOptions,
+                money = new Money(1234.7, 'EUR');
+            money.toLocaleString().should.not.equal('€๑,๒๓๔.๗๐๐๐');
+
+            Money.defaultLocale = () => 'en-US-u-nu-thai';
+            Money.defaultLocaleOptions = () => { return {
+                minimumFractionDigits: 4,
+                maximumFractionDigits: 4,
+            };};
+            money.toLocaleString().should.equal('€๑,๒๓๔.๗๐๐๐');
+
+            Money.defaultLocale = originalLocale;
+            Money.defaultLocaleOptions = originalLocaleOptions;
+        });
     });
 
 });
