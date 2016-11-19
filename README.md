@@ -65,10 +65,13 @@ Comparision functions are `eq`, `ne`, `lt`, `lte`, `gt`, `gte` and require Money
         placeOrder();
     }
 
-### Forex
+### Rounding
 
-Foreign exchange of currencies usually requires more precision than the currency default.  `round` can accept the number of decimal places.
+When required, Money is normally rounded to the precision of the currency using the banker's rounding algorithm.  The precision (number of decimal places) can be optionally specified.
 
+The `round` method can accept the number of decimal places.
+
+    new Money(123.57719, 'NZD').round();    // '123.58 NZD'
     new Money(123.57719, 'NZD').round(4);   // '123.5772 NZD'
     
 The `allocate` method also has an optional precision
