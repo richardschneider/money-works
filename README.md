@@ -14,6 +14,7 @@ the help of [semantic-release](https://github.com/semantic-release/semantic-rele
 - Locale specific formatting using the [Internationalization API](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl)
 - Precision decimal arithmetic using a [big number](https://www.npmjs.com/package/big.js) package
 - [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes
+- Currency conversion
 - Uses [Martin Folwer's](http://martinfowler.com/) design pattern for [Money](http://martinfowler.com/eaaCatalog/money.html)
 - Allocation of funds without loosing pennies (smallest denomination)
 - Uses [Andy Earnshaw's Intl](https://github.com/andyearnshaw/Intl.js) when the environment's `Intl` package doesn't support the language.
@@ -97,7 +98,11 @@ And `toLocaleString`
 A default locale and localeOptions is set with `Money.defaultLocale` and `Money.defaultLocaleOptions`.  Both defaults are a function that return the default locale (string or array) and default locale options (object), respectively.
 
     Money.defaultLocale = () => window.lang;
-    
+ 
+### Currency conversion
+
+`to(currency)` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to convert the Money into another currency.  It uses `Money.forexService` to determine the exchange rate.  If the exchange rate cannot be determined, then the Promise is rejected.
+
 ### Browser usage
 
 Include the package from your project

@@ -330,4 +330,48 @@ describe('Money', () => {
         });
     });
 
+    describe('Forex', () => {
+
+        var forexService;
+        beforeEach(function() {
+            forexService = Money.forexService;
+        });
+        afterEach(function() {
+            Money.forexService = forexService;
+        });
+
+        it('should return a Promise', () => {
+            let nzd = new Money('100 NZD');
+            nzd.to('CNY').should.be.a.Promise();
+        });
+
+        it('should reject invalid currency code', () => {
+            let nzd = new Money('100 NZD');
+            return nzd.to('CNY-XXX')
+                .should.be.rejectedWith({ message: "'CNY-XXX' is not a valid ISO-4217 currency code" });
+        });
+
+        it('should fulfill Promise with money in the converted currency', () => {
+            let nzd = new Money('100 NZD');
+            return nzd.to('CNY').should
+                .finally.be.instanceOf(Money)
+                .and.have.property('currency', 'CNY');
+        });
+
+        it('should reject an undefined exchange rate', () => {
+            let nzd = new Money('100 NZD');
+            Money.forexService = () => Promise.resolve(undefined);
+            return nzd.to('CNY')
+                .should.be.rejected();
+        });
+
+        it('should reject an exchange rate that is not a number', () => {
+            let nzd = new Money('100 NZD');
+            Money.forexService = () => Promise.resolve('foo');
+            return nzd.to('CNY')
+                .should.be.rejected();
+        });
+
+    });
+
 });
