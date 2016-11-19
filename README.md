@@ -101,7 +101,13 @@ A default locale and localeOptions is set with `Money.defaultLocale` and `Money.
  
 ### Currency conversion
 
-`to(currency)` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to convert the Money into another currency.  It uses `Money.forexService` to determine the exchange rate.  If the exchange rate cannot be determined, then the Promise is rejected.
+`to(currency)` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to convert the Money into another currency.  It uses `Money.forexService` to determine the exchange rate.  If the exchange rate cannot be determined, then the Promise is rejected.  The conversion does not round the result.
+
+The default `forexService` uses the exchange rates from European Central Bank via the [fixer.io API](http://fixer.io).
+
+    new Money('100 NZD')
+        .to('JPY')
+        .then(console.log)      // 7758.9 JPY
 
 ### Browser usage
 
