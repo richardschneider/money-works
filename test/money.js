@@ -372,6 +372,11 @@ describe('Money', () => {
                 .should.be.rejected();
         });
 
+        it('should always convert to same currency', () => {
+            let nzd = new Money('100 NZD');
+            return nzd.to('NZD').should.finally.equal(nzd);
+        });
+
     });
 
 });
