@@ -362,7 +362,7 @@ describe('Money', () => {
             let nzd = new Money('100 NZD');
             Money.forexService = () => Promise.resolve(undefined);
             return nzd.to('CNY')
-                .should.be.rejected();
+                .should.be.rejectedWith({ message: "Undefined exchange rate for NZD to CNY" });
         });
 
         it('should reject an exchange rate that is not a number', () => {
