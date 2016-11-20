@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Money Works</title>
+    <title>Money Works - Forex</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -30,10 +30,9 @@
                     and published on <a href="https://www.npmjs.com/package/money-works">NPM</a>.
                 </p>
                 <p>
-                    Money contains an amount and a currency.  The amount is a big number that allows precision decimal arithmetic.
-                    The currency is an <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> code. It uses banker's
-                    rounding to the decimal places of the currency.
-                    See the <a href="https://github.com/richardschneider/money-works/blob/master/README.md">README</a> for all the details.
+                    Money can be converted into another currency.  The <code>Money.forexService</code> is used to determine
+                    the exchange rate. The default <code>forexService</code> uses the exchange rates from the
+                    European Central Bank via the <a href="http://fixer.io">fixer.io API</a>.
                 </p>
 
                 <form>
@@ -41,9 +40,9 @@
                     <div class="input-group" id="money">
                         <div class="input-group-btn">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span id="currency">EUR</span> <span class="caret"></span>
+                                    <span id="fromCurrency">EUR</span> <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" id="selectCurrency">
+                                <ul class="dropdown-menu" id="selectFromCurrency">
                                     <li><a href="#">CNY</a></li>
                                     <li><a href="#">EUR</a></li>
                                     <li><a href="#">USD</a></li>
@@ -51,11 +50,30 @@
                                     <li><a href="#">GBP</a></li>
                                     <li><a href="#">INR</a></li>
                                     <li><a href="#">NZD</a></li>
-                                    <li><a href="#">XBT</a></li>
                                 </ul>
                         </div>
-                        <input type="text" class="form-control" id="amount" value="1234.567" autocomplete="off">
+                        <input type="text" class="form-control" id="fromAmount" value="100.00" autocomplete="off">
                     </div>
+                    <br/>
+                    <label for="fx">Converted to</label>
+                    <div class="input-group" id="fx">
+                        <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="toCurrency">GBP</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="selectToCurrency">
+                                    <li><a href="#">CNY</a></li>
+                                    <li><a href="#">EUR</a></li>
+                                    <li><a href="#">USD</a></li>
+                                    <li><a href="#">JPY</a></li>
+                                    <li><a href="#">GBP</a></li>
+                                    <li><a href="#">INR</a></li>
+                                    <li><a href="#">NZD</a></li>
+                                </ul>
+                        </div>
+                        <input type="text" class="form-control" id="toAmount" readonly="true">
+                    </div>
+
 
                     <div id="error" class="alert alert-warning help-block hidden" role="alert">
                         <strong>Failed!</strong> <span id="error-message"></span>
@@ -67,7 +85,8 @@
                     <thead>
                         <tr>
                             <th>Locale</th>
-                            <th>Format</th>
+                            <th>From</th>
+                            <th>To</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -105,23 +124,34 @@
 
             function show() {
                 var tbody = $('#format tbody'),
-                    amount = $('#amount').val(),
-                    currency = $('#currency').text(),
-                    money = new Money(amount, currency);
-                tbody.empty();
-                locales.forEach(function (locale) {
-                    tbody.append('<tr><td>' + locale + '</td> <td>' + money.toLocaleString(locale) + '</td></tr>');
+                    amount = $('#fromAmount').val(),
+                    from = $('#fromCurrency').text(),
+                    to = $('#toCurrency').text(),
+                    money = new Money(amount, from);
+                money.to(to).then(fx => {
+                    $('#toAmount').val(fx.amount.toString());
+                    tbody.empty();
+                    locales.forEach(function (locale) {
+                        tbody.append('<tr><td>' + locale + '</td> <td>' + money.toLocaleString(locale) + '</td> <td>' + fx.toLocaleString(locale) + '</td></tr>');
+                    })
                 });
             }
 
-            $('#selectCurrency').click(function (e) {
+            $('#selectFromCurrency').click(function (e) {
                 var currency = e.target.innerText;
-                $('#currency').text(currency);
+                $('#fromCurrency').text(currency);
                 e.preventDefault();
                 show();
             });
 
-            $('#amount').keypress(function(e) {
+            $('#selectToCurrency').click(function (e) {
+                var currency = e.target.innerText;
+                $('#toCurrency').text(currency);
+                e.preventDefault();
+                show();
+            });
+
+            $('#fromAmount').keypress(function(e) {
                 if(e.which === 13) {
                     e.preventDefault();
                     show();
