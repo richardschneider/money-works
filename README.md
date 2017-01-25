@@ -120,3 +120,8 @@ or from the [unpkg CDN](https://unpkg.com)
     <script src="https://unpkg.com/money-works/dist/money-works.min.js"></script>
 
 The script creates the `Money` global constructor or defines it if you are using [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition).
+
+Because of its size, Andy Earnshaw's Intl package is not inlcuded in the distribution.  To include it, please read his [Getting Started](https://github.com/andyearnshaw/Intl.js/blob/master/README.md#getting-started) section.  For example:
+
+    <script src="https://unpkg.com/money-works/dist/money-works.min.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.fr,Intl.~locale.pt"></script>
