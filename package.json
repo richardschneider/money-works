@@ -68,7 +68,7 @@
     "istanbul": "^0.4.5",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
-    "mocha": "*",
+    "mocha": ">=4.0.0",
     "semantic-release": "^6.3.2",
     "should": "*",
     "validate-commit-msg": "^2.6.1",
