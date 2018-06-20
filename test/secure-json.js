@@ -15,9 +15,9 @@ describe('Secure JSON', () => {
     });
 
     it('should fulfill with a JSON object', () => {
-        return getJSON('https://api.fixer.io/latest').should
+        return getJSON('https://free.currencyconverterapi.com/api/v5/convert?q=NZD_CNY&compact=ultra').should
             .finally.be.instanceOf(Object)
-            .and.have.property('base');
+            .and.have.property('NZD_CNY');
     });
 
 });

@@ -360,9 +360,8 @@ describe('Money', () => {
 
         it('should reject an undefined exchange rate', () => {
             let nzd = new Money('100 NZD');
-            Money.forexService = () => Promise.resolve(undefined);
-            return nzd.to('CNY')
-                .should.be.rejectedWith({ message: "Undefined exchange rate for NZD to CNY" });
+            return nzd.to('ABC')
+                .should.be.rejectedWith({ message: "Undefined exchange rate for NZD to ABC" });
         });
 
         it('should reject an exchange rate that is not a number', () => {
