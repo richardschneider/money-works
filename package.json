@@ -6,9 +6,9 @@
   "license": "MIT",
   "main": "index.js",
   "browser": {
-      "index.js": "browser.js",
-      "./lib/secure-json.js": "./browser/secure-json.js",
-      "intl": false
+    "index.js": "browser.js",
+    "./lib/secure-json.js": "./browser/secure-json.js",
+    "intl": false
   },
   "browserify": {
     "transform": [
@@ -69,11 +69,12 @@
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
     "mocha": "*",
-    "semantic-release": "^12.2.2",
+    "semantic-release": "^15.6.0",
     "should": "*",
     "validate-commit-msg": "^2.6.1",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "travis-deploy-once": "^5.0.0"
   },
   "config": {
     "ghooks": {
@@ -94,6 +95,8 @@
   "scripts": {
     "test": "gulp test",
     "deploy-site": "deploy-to-git",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-  }
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "version": "0.0.0-development"
 }
