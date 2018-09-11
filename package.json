@@ -69,7 +69,7 @@
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
     "mocha": "*",
-    "semantic-release": "^15.6.0",
+    "semantic-release": "^15.9.15",
     "should": "*",
     "validate-commit-msg": "^2.6.1",
     "vinyl-buffer": "^1.0.0",
