@@ -59,7 +59,7 @@
     "browserify": "^14.4.0",
     "deploy-to-git": "0.1.1",
     "glob": "^7.0.6",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.1",
     "gulp-coveralls": "^0.1.4",
     "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
